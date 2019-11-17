@@ -1,8 +1,7 @@
--- CREATE DATABASE copenhagen CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE copenhagen CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- USE copenhagen
+USE copenhagen
 
--- GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION
 
 -- Adminer 4.7.4 MySQL dump
 
@@ -110,3 +109,5 @@ INSERT INTO `VenueCity` (`venue_id`, `city_id`) VALUES
 (3,	2);
 
 -- 2019-11-17 15:38:59
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION

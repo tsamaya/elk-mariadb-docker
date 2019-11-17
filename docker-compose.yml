@@ -1,17 +1,17 @@
 version: '3.6'
 
 services:
-  elasticsearch:
-    container_name: elasticsearch
-    image: elastic/elasticsearch:7.4.2
-    restart: always
-    environment:
-      - bootstrap.memory_lock=true
-      - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
-      - discovery.type=single-node
-    ports:
-      - '9200:9200'
-      - '9300:9300'
+  # elasticsearch:
+  #   container_name: elasticsearch
+  #   image: elastic/elasticsearch:7.4.2
+  #   restart: always
+  #   environment:
+  #     - bootstrap.memory_lock=true
+  #     - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
+  #     - discovery.type=single-node
+  #   ports:
+  #     - '9200:9200'
+  #     - '9300:9300'
 
   # kibana:
   #   container_name: kibana
@@ -22,24 +22,24 @@ services:
   #   depends_on:
   #     - elasticsearch
 
-  logstash:
-    container_name: logstash
-    build: ./logstash
-    restart: always
-    depends_on:
-      - elasticsearch
+  # logstash:
+  #   container_name: logstash
+  #   build: ./logstash
+  #   restart: always
+  #   depends_on:
+  #     - elasticsearch
 
   db:
     container_name: db
     # image: mysql:8.0.18
-    image: mariadb:10.4.10-bionic
-    # build: ./db
+    # image: mariadb:10.4.10-bionic
+    build: ./db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: copenhagen
-      MYSQL_USER: app
-      MYSQL_PASSWORD: secret
+      # MYSQL_ROOT_PASSWORD: password
+      # MYSQL_DATABASE: copenhagen
+      # MYSQL_USER: app
+      # MYSQL_PASSWORD: secret
 
   adminer:
     container_name: adminer
