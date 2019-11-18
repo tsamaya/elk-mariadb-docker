@@ -8,10 +8,6 @@ const vm = new Vue({
       searchResults: [], // Displayed search results
       numHits: null, // Total search results found
       searchOffset: 0, // Search result pagination offset
-
-      selectedParagraph: null, // Selected paragraph object
-      venueOffset: 0, // Offset for book paragraphs being displayed
-      paragraphs: [], // Paragraphs being displayed in book preview window
     };
   },
   async created() {
@@ -53,54 +49,6 @@ const vm = new Vue({
       }
       this.searchResults = await this.search();
       document.documentElement.scrollTop = 0;
-    },
-    /** Call the API to get current page of paragraphs */
-    async getParagraphs(bookTitle, offset) {
-      try {
-        this.venueOffset = offset;
-        const start = this.venueOffset;
-        const end = this.venueOffset + 10;
-        const response = await axios.get(`${this.baseUrl}/paragraphs`, {
-          params: { bookTitle, start, end },
-        });
-        return response.data.hits.hits;
-      } catch (err) {
-        console.error(err);
-      }
-    },
-    /** Get next page (next 10 paragraphs) of selected book */
-    async nextBookPage() {
-      this.$refs.bookModal.scrollTop = 0;
-      this.paragraphs = await this.getParagraphs(
-        this.selectedParagraph._source.title,
-        this.venueOffset + 10
-      );
-    },
-    /** Get previous page (previous 10 paragraphs) of selected book */
-    async prevBookPage() {
-      this.$refs.bookModal.scrollTop = 0;
-      this.paragraphs = await this.getParagraphs(
-        this.selectedParagraph._source.title,
-        this.venueOffset - 10
-      );
-    },
-    /** Display paragraphs from selected book in modal window */
-    async showBookModal(searchHit) {
-      try {
-        document.body.style.overflow = 'hidden';
-        this.selectedParagraph = searchHit;
-        this.paragraphs = await this.getParagraphs(
-          searchHit._source.title,
-          searchHit._source.location - 5
-        );
-      } catch (err) {
-        console.error(err);
-      }
-    },
-    /** Close the book detail modal */
-    closeBookModal() {
-      document.body.style.overflow = 'auto';
-      this.selectedParagraph = null;
     },
   },
 });
