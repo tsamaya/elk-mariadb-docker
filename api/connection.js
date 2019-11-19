@@ -42,12 +42,11 @@ const resetIndex = async () => {
 async function putMapping() {
   const schema = {
     venue_id: { type: 'integer' },
-    name: { type: 'text' },
+    name: { type: 'keyword' },
     address: { type: 'text' },
     location: { type: 'geo_point' },
-    nuplet: { type: 'integer' },
-    type: { type: 'text' },
-    city: { type: 'text' },
+    type: { type: 'keyword' },
+    city: { type: 'keyword' },
   };
 
   return client.indices.putMapping({

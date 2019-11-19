@@ -54,7 +54,9 @@ INSERT INTO `Categories` (`id`, `name`) VALUES
 (2,	'breakfast'),
 (3,	'italian'),
 (4,	'mexican'),
-(5,	'lyonnais');
+(5,	'lyonnais'),
+(6,	'danish'),
+(7,	'coffee shop');
 
 DROP TABLE IF EXISTS `Venues`;
 CREATE TABLE `Venues` (
@@ -70,7 +72,8 @@ CREATE TABLE `Venues` (
 INSERT INTO `Venues` (`id`, `name`, `latitude`, `longitude`, `address`, `updated`) VALUES
 (1,	'Au Petit Bouchon Chez Georges',	45.76702490,	4.83679810,	'8 Rue du Garet, 69001 Lyon, France',	'2019-11-17 15:16:30'),
 (2,	'Golborne Deli',	51.52183000,	-0.20887800,	'100-102 Golborne Rd, London W10 5PS',	'2019-11-17 15:18:56'),
-(3,	'Taqueria',	51.51468200,	-0.19657700,	'141-145 Westbourne Grove, Notting Hill, London W11 2RS',	'2019-11-17 15:21:09');
+(3,	'Taqueria',	51.51468200,	-0.19657700,	'141-145 Westbourne Grove, Notting Hill, London W11 2RS',	'2019-11-17 15:21:09'),
+(4,	'Snaps and Rye',	51.5218763,	-0.2084877,	'93 Golborne Rd, London W10 5NL',	'2019-11-17 15:23:19');
 
 DROP TABLE IF EXISTS `VenueCategory`;
 CREATE TABLE `VenueCategory` (
@@ -89,8 +92,11 @@ INSERT INTO `VenueCategory` (`venue_id`, `category_id`) VALUES
 (2,	1),
 (2,	2),
 (2,	3),
+(2,	7),
 (3,	1),
-(3,	4);
+(3,	4),
+(4, 1),
+(4, 6);
 
 DROP TABLE IF EXISTS `VenueCity`;
 CREATE TABLE `VenueCity` (
@@ -106,8 +112,9 @@ INSERT INTO `VenueCity` (`venue_id`, `city_id`) VALUES
 (1,	3),
 (2,	1),
 (3,	1),
-(3,	2);
+(3,	2),
+(4,	1);
 
 -- 2019-11-17 15:38:59
 
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;

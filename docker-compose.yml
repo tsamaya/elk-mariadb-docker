@@ -38,16 +38,16 @@ services:
     ports:
       - '80:80' # Forward site to localhost:80
 
-  # api: # Node.js App
-  #   container_name: api
-  #   build: ./api
-  #   ports:
-  #     - '3000:3000' # Expose API port
-  #     - '9229:9229' # Expose Node process debug port (disable in production)
-  #   environment: # Set ENV vars
-  #     - NODE_ENV=local
-  #     - ES_HOST=elasticsearch
-  #     - PORT=3000
+  api: # Node.js App
+    container_name: api
+    build: ./api
+    ports:
+      - '3000:3000' # Expose API port
+      # - '9229:9229' # Expose Node process debug port (disable in production)
+    environment: # Set ENV vars
+      - NODE_ENV=local
+      - ES_HOST=elasticsearch
+      - PORT=3000
 
   db:
     container_name: db
@@ -60,7 +60,6 @@ services:
     # MYSQL_DATABASE: copenhagen
     # MYSQL_USER: app
     # MYSQL_PASSWORD: secret
-
   adminer:
     container_name: adminer
     image: adminer
