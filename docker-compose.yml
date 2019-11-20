@@ -49,6 +49,7 @@ services:
     environment: # Set ENV vars
       - NODE_ENV=local
       - ES_HOST=elasticsearch
+      - ES_PORT=9200
       - PORT=3000
 
   # DB
