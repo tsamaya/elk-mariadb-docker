@@ -22,12 +22,14 @@ services:
     depends_on:
       - elasticsearch
 
-  # logstash:
-  #   container_name: logstash
-  #   build: ./logstash
-  #   restart: always
-  #   depends_on:
-  #     - elasticsearch
+  logstash:
+    container_name: logstash
+    build: ./logstash
+    restart: always
+    ports:
+      - '9600:9600'
+    depends_on:
+      - elasticsearch
 
   # Nginx Server For Frontend App
   nginx:
@@ -38,28 +40,24 @@ services:
     ports:
       - '80:80' # Forward site to localhost:80
 
-  api: # Node.js App
+  # Node.js API
+  api:
     container_name: api
     build: ./api
     ports:
       - '3000:3000' # Expose API port
-      # - '9229:9229' # Expose Node process debug port (disable in production)
     environment: # Set ENV vars
       - NODE_ENV=local
       - ES_HOST=elasticsearch
       - PORT=3000
 
+  # DB
   db:
     container_name: db
-    # image: mysql:8.0.18
-    # image: mariadb:10.4.10-bionic
     build: ./db
     restart: always
-    # environment:
-    # MYSQL_ROOT_PASSWORD: password
-    # MYSQL_DATABASE: copenhagen
-    # MYSQL_USER: app
-    # MYSQL_PASSWORD: secret
+
+  # Adminer
   adminer:
     container_name: adminer
     image: adminer
