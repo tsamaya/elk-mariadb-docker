@@ -19,12 +19,6 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}`);
 });
 
-// // Set permissive CORS header
-// app.use(async (ctx, next) => {
-//   ctx.set('Access-Control-Allow-Origin', '*');
-//   return next();
-// });
-
 // Log percolated errors to the console
 app.on('error', err => {
   console.error('Server Error', err);
