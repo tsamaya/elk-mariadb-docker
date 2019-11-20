@@ -9,7 +9,8 @@ module.exports = {
         multi_match: {
           query: term,
           fields: ['name^5', 'address^3', 'city', 'type^2'],
-          fuzziness: '6',
+          // fuzziness: '6',
+          fuzziness: 'AUTO',
         },
       },
       highlight: { fields: { name: {} } },
