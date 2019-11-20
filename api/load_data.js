@@ -1,3 +1,8 @@
+/**
+ *
+ * NOT USED, just for dev purpose with logstash
+ *
+ */
 const esConnection = require('./connection');
 
 const venues = [
