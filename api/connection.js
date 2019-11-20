@@ -2,9 +2,10 @@ const elasticsearch = require('elasticsearch');
 
 // Core ES variables for this project
 const index = 'venues';
-const type = 'venue';
-const port = 9200;
+const type = '';
+// const type = 'venue';
 const host = process.env.ES_HOST || 'localhost';
+const port = process.env.ES_PORT || 9200;
 const client = new elasticsearch.Client({ host: { host, port } });
 
 /**
